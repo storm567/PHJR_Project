@@ -1,0 +1,1 @@
+<view class="data-v-47a979b6" style="background-color:#000000;position:relative"><view class="data-v-47a979b6" style="position:absolute;top:0px;right:10px;font-size:40px" bindtap="{{a}}"> × </view><view class="data-v-47a979b6" id="bcid"><view class="data-v-47a979b6" style="height:60%"></view><text class="tip data-v-47a979b6" style="color:#000000">...载入中...</text></view></view>

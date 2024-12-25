@@ -1,0 +1,67 @@
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"com_id": {
+			"bsonType": "string",
+			"description": "企业Id"
+		},
+		"c_integral": {
+			"bsonType": "string",
+			"description": "企业积分"
+		},
+		"c_license": {
+			"bsonType": "string",
+			"description": "营业执照"
+		},
+		"c_type": {
+			"bsonType": "string",
+			"description": "企业类型 (0 个人独资 ，1 合伙企业 2 有限责任公司 3 股份有限公司)"
+		},
+		"c_legal_name": {
+			"bsonType": "string",
+			"description": "法人姓名"
+		},
+		"c_legal_id": {
+			"bsonType": "timestamp",
+			"description": "法人证件号"
+		},
+		"com_remark": {
+			"bsonType": "string",
+			"description": "备注、激活码"
+		},
+		"c_legal_img": {
+			"bsonType": "string",
+			"description": "法人证件路径"
+		},
+		"c_legal_time": {
+			"bsonType": "timestamp",
+			"description": "有效期限"
+		},
+		"c_address": {
+			"bsonType": "string",
+			"description": "公司详细地址"
+		},
+		"c_bus_sco": {
+			"bsonType": "string",
+			"description": "经营范围"
+		},
+		"c_lic_time": {
+			"bsonType": "string",
+			"description": "营业执照到期时间"
+		},
+		"c_del": {
+			"bsonType": "string",
+			"description": "删除标识 0存在 2删除"
+		}
+	}
+}

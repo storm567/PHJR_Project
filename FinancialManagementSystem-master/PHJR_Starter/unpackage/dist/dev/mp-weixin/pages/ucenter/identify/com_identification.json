@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "企业认证",
+  "usingComponents": {
+    "uni-nav-bar": "../../../uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar",
+    "uni-card": "../../../uni_modules/uni-card/components/uni-card/uni-card",
+    "uni-section": "../../../uni_modules/uni-section/components/uni-section/uni-section",
+    "uni-search-bar": "../../../uni_modules/uni-search-bar/components/uni-search-bar/uni-search-bar"
+  }
+}

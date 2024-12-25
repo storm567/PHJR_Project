@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "银行贷款_步骤2",
+  "usingComponents": {
+    "uni-nav-bar": "../../../../uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar",
+    "uni-file-picker": "../../../../uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker",
+    "uni-section": "../../../../uni_modules/uni-section/components/uni-section/uni-section"
+  }
+}

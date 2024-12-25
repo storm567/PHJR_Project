@@ -1,0 +1,39 @@
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"exa_loan_id": {
+			"bsonType": "string",
+			"description": "贷款ID"
+		},
+		"exa_name": {
+			"bsonType": "string",
+			"description": "审批人"
+		},
+		"exa_time": {
+			"bsonType": "timestamp",
+			"description": "审批时间"
+		},
+		"exa_state": {
+			"bsonType": "string",
+			"description": "审批状态 0 通过，1 驳回"
+		},
+		"exa_remark": {
+			"bsonType": "string",
+			"description": "审批理由"
+		},
+		"exa_del": {
+			"bsonType": "string",
+			"description": "删除标识 0 正常 2 删除"
+		}
+	}
+}

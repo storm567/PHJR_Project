@@ -1,0 +1,47 @@
+
+view.data-v-22222d69 {
+		display: flex;
+		box-sizing: border-box;
+		flex-direction: column;
+}
+.pages.data-v-22222d69 {
+		background-color: #FFFFFF;
+}
+.avatar.data-v-22222d69 {
+		width: 200rpx;
+		height: 200rpx;
+		margin-right: 10rpx;
+}
+.main.data-v-22222d69 {
+		justify-content: space-between;
+		flex: 1;
+}
+.title.data-v-22222d69 {
+		font-size: 16px;
+}
+.info.data-v-22222d69 {
+		flex-direction: row;
+		justify-content: space-between;
+}
+.author.data-v-22222d69,
+	.last_modify_date.data-v-22222d69 {
+		font-size: 14px;
+		color: #999999;
+}
+.uni-search-box.data-v-22222d69 {
+		background-color: #FFFFFF;
+		position: -webkit-sticky;
+		position: sticky;
+		height: 50px;
+		top: 0;
+		left: 0;
+
+		z-index: 9;
+
+
+		width: 580rpx;
+}
+.container.data-v-22222d69 {
+		position: relative;
+		padding-right: 0px;
+}

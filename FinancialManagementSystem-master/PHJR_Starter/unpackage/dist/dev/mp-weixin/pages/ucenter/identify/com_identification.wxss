@@ -1,0 +1,30 @@
+
+.suggestion-list {
+		background-color: white;
+		border: 1px solid #ddd;
+		margin-top: -1px;
+}
+.suggestion-list view {
+		padding: 10px;
+		border-bottom: 1px solid #eee;
+		cursor: pointer;
+}
+.suggestion-list view:hover {
+		background-color: #f0f0f0;
+}
+button {
+		position: fixed;
+		/* 固定定位 */
+		bottom: 20px;
+		/* 距离屏幕底部 20px */
+		width: 95%;
+		left: 50%;
+		/* 水平居中 */
+		transform: translateX(-50%);
+		/* 调整按钮以确保它在水平居中 */
+		padding: 10px;
+		background-color: #007aff;
+		color: white;
+		text-align: center;
+		border-radius: 15px;
+}

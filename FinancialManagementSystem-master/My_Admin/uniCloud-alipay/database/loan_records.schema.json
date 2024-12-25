@@ -1,0 +1,107 @@
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"user_id": {
+			"bsonType": "string",
+			"description": "用户id，参考uni-id-users表"
+		},
+		"bank": {
+			"bsonType": "string",
+			"description": "申请银行"
+		},
+		"loanAmount": {
+			"bsonType": "int",
+			"description": "贷款金额"
+		},
+		"loanPurpose": {
+			"bsonType": "string",
+			"description": "贷款目的"
+		},
+		"collateralImage": {
+			"bsonType": "string",
+			"description": "抵押物图片url"
+		},
+		"transactionImage": {
+			"bsonType": "string",
+			"description": "流水图片url"
+		},
+		"signatureImage": {
+			"bsonType": "string",
+			"description": "签名图片url"
+		},
+		"createdTime": {
+			"bsonType": "timestamp",
+			"description": "申请时间"
+		},
+		"loan_no": {
+			"bsonType": "string",
+			"description": "贷款编号，自动生成"
+		},
+		"loan_com_id": {
+			"bsonType": "string",
+			"description": "企业id"
+		},
+		"loan_bank_id": {
+			"bsonType": "string",
+			"description": "银行id"
+		},
+		"loan_lis": {
+			"bsonType": "int",
+			"description": "贷款期限"
+		},
+		"loan_integral": {
+			"bsonType": "string",
+			"description": "贷款积分"
+		},
+		"loan_rate": {
+			"bsonType": "string",
+			"description": "贷款利率"
+		},
+		"loan_state": {
+			"bsonType": "string",
+			"description": "贷款状态 0 未审批 1平台已通过 2 平台已驳回 3银行已审核 4 银行驳回"
+		},
+		"loan_time": {
+			"bsonType": "timestamp",
+			"description": "贷款时间"
+		},
+		"loan_end_time": {
+			"bsonType": "timestamp",
+			"description": "到期时间"
+		},
+		"loan_del": {
+			"bsonType": "string",
+			"description": "删除标识 0 正常 2 删除"
+		},
+		"b_account_no": {
+			"bsonType": "string",
+			"description": "收款账户"
+		},
+		"b_name": {
+			"bsonType": "string",
+			"description": "收款人"
+		},
+		"b_bank_name": {
+			"bsonType": "string",
+			"description": "开户行"
+		},
+		"b_idcard": {
+			"bsonType": "string",
+			"description": "身份证号"
+		},
+		"loan_sign": {
+			"bsonType": "string",
+			"description": "签约材料"
+		}
+	}
+}

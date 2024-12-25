@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "文章详情",
+  "usingComponents": {
+    "uni-dateformat": "../../uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat",
+    "uni-list-item": "../../uni_modules/uni-list/components/uni-list-item/uni-list-item",
+    "uni-list": "../../uni_modules/uni-list/components/uni-list/uni-list",
+    "unicloud-db": "../../node-modules/@dcloudio/uni-components/lib/unicloud-db/unicloud-db"
+  }
+}

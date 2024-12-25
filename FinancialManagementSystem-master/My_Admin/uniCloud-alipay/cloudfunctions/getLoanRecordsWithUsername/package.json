@@ -1,0 +1,7 @@
+{
+  "name": "getLoanRecordsWithUsername",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

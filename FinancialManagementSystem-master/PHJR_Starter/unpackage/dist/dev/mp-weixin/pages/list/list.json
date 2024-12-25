@@ -1,0 +1,18 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "status-bar": "../../uni_modules/uni-nav-bar/components/uni-nav-bar/uni-status-bar",
+    "uni-icons": "../../uni_modules/uni-icons/components/uni-icons/uni-icons",
+    "uni-grid-item": "../../uni_modules/uni-grid/components/uni-grid-item/uni-grid-item",
+    "uni-grid": "../../uni_modules/uni-grid/components/uni-grid/uni-grid",
+    "uni-section": "../../uni_modules/uni-section/components/uni-section/uni-section",
+    "uni-swiper-dot": "../../uni_modules/uni-swiper-dot/components/uni-swiper-dot/uni-swiper-dot",
+    "uni-search-bar": "../../uni_modules/uni-search-bar/components/uni-search-bar/uni-search-bar",
+    "uni-dateformat": "../../uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat",
+    "uni-list-item": "../../uni_modules/uni-list/components/uni-list-item/uni-list-item",
+    "uni-load-state": "../../components/uni-load-state/uni-load-state",
+    "uni-list": "../../uni_modules/uni-list/components/uni-list/uni-list",
+    "unicloud-db": "../../node-modules/@dcloudio/uni-components/lib/unicloud-db/unicloud-db"
+  }
+}

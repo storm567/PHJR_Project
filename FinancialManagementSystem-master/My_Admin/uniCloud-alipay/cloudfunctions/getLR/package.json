@@ -1,0 +1,7 @@
+{
+  "name": "getLR",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

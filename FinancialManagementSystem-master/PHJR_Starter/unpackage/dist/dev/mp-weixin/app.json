@@ -1,0 +1,95 @@
+{
+  "pages": [
+    "pages/list/list",
+    "pages/test/test",
+    "pages/cozeai/cozeai",
+    "pages/titlegrid/cart/bankcart/bankcart",
+    "pages/titlegrid/cart/uploadData/uploadData",
+    "pages/titlegrid/cart/signing/signing",
+    "pages/webpage/index",
+    "pages/titlegrid/scan/scan",
+    "pages/titlegrid/cart/cart",
+    "pages/titlegrid/wallet/wallet",
+    "pages/titlegrid/wallet/addCard",
+    "pages/titlegrid/chat/chat",
+    "pages/ucenter/mycart/mycart",
+    "pages/ucenter/identify/com_identification",
+    "pages/ucenter/identify/per_identification",
+    "pages/grid/grid",
+    "pages/list/search/search",
+    "pages/list/detail",
+    "pages/ucenter/ucenter",
+    "pages/uni-agree/uni-agree",
+    "pages/ucenter/settings/settings",
+    "pages/ucenter/read-news-log/read-news-log"
+  ],
+  "subPackages": [
+    {
+      "root": "uni_modules/uni-feedback",
+      "pages": [
+        "pages/opendb-feedback/opendb-feedback"
+      ]
+    },
+    {
+      "root": "uni_modules/uni-id-pages/pages",
+      "pages": [
+        "userinfo/userinfo",
+        "userinfo/realname-verify/realname-verify",
+        "login/login-withoutpwd",
+        "login/login-withpwd",
+        "userinfo/deactivate/deactivate",
+        "userinfo/bind-mobile/bind-mobile",
+        "login/login-smscode",
+        "register/register",
+        "retrieve/retrieve",
+        "common/webview/webview",
+        "userinfo/change_pwd/change_pwd",
+        "register/register-by-email",
+        "retrieve/retrieve-by-email",
+        "userinfo/set-pwd/set-pwd"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-starter",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#F8F8F8",
+    "enablePullDownRefresh": false,
+    "rpxCalcMaxDeviceWidth": 375,
+    "rpxCalcBaseDeviceWidth": 375
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#007AFF",
+    "borderStyle": "black",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "pagePath": "pages/list/list",
+        "iconPath": "static/tabbar/list.png",
+        "selectedIconPath": "static/tabbar/list_active.png",
+        "text": "主页"
+      },
+      {
+        "pagePath": "pages/titlegrid/cart/cart",
+        "iconPath": "static/tabbar/plz.png",
+        "selectedIconPath": "static/tabbar/plz_active.png",
+        "text": "贷款申请"
+      },
+      {
+        "pagePath": "pages/grid/grid",
+        "iconPath": "static/tabbar/news.png",
+        "selectedIconPath": "static/tabbar/news_active.png",
+        "text": "资讯"
+      },
+      {
+        "pagePath": "pages/ucenter/ucenter",
+        "iconPath": "static/tabbar/me.png",
+        "selectedIconPath": "static/tabbar/me_active.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

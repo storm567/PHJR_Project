@@ -1,0 +1,7 @@
+
+	/* 自定义悬浮入口的位置 */
+#position_demo {
+		position: absolute;
+		right: 10px;
+		bottom: 20px;
+}

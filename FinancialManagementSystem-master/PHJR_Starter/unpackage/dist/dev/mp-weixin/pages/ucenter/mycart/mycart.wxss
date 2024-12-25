@@ -1,0 +1,44 @@
+
+.card-content {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+}
+.bank-icon {
+		width: 40px;
+		height: 40px;
+		margin-right: 10px;
+}
+.text-content {
+		flex: 1;
+}
+.loan-title {
+		display: flex;
+		align-items: baseline;
+}
+.loan-amount {
+		font-weight: bold;
+		font-size: 18px;
+}
+.yuan {
+		font-size: 16px;
+		margin-left: 5px;
+}
+.loan-purpose {
+		margin-top: 10px;
+		font-size: 14px;
+}
+
+	/* 状态文本样式 */
+.loan-state {
+		font-weight: bold;
+}
+.state-pending {
+		color: gray;
+}
+.state-approved {
+		color: green;
+}
+.state-rejected {
+		color: red;
+}

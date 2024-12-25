@@ -1,0 +1,496 @@
+<template>
+	<view class="pages">
+		<!-- 添加的外层容器 -->
+		<view class="container">
+			<!-- #ifndef H5 -->
+			<statusBar></statusBar>
+			<!-- #endif -->
+			<!-- 表头按钮 -->
+			<uni-section title="普惠金融" class="header-section"  titleFontSize="20px" titleColor="#FFFFFF"
+				padding>
+				<uni-grid :column="4" :highlight="true"  @change="change">
+					<uni-grid-item v-for="(item, index) in items" :index="index" :key="index" :square="true"
+						@click="navigateTo(item.url,item.flag)">
+						<!-- <view class="grid-item-box"> -->
+						<uni-icons class="icon" :type="item.icon" :size="30" :color="item.color" />
+						<text class="text">{{ item.text }}</text>
+						<!-- </view> -->
+					</uni-grid-item>
+				</uni-grid>
+			</uni-section>
+			<!-- 轮播图 -->
+			<uni-swiper-dot class="uni-swiper-dot-box" @clickItem=clickItem :info="info" :current="current" :mode="mode"
+				:dots-styles="dotsStyles" field="content">
+				<swiper circular="true" autoplay="true" class="swiper-box" @change="change" :current="swiperDotIndex">
+					<swiper-item v-for="(item, index) in info" :key="index">
+						<view class="swiper-item" :class="'swiper-item' + index">
+							<image :src="item.url" mode="aspectFill" class="image"></image>
+						</view>
+					</swiper-item>
+				</swiper>
+			</uni-swiper-dot>
+			
+<!-- 			<uni-notice-bar show-icon scrollable
+							text="uni-app 版正式发布，开发一次，同时发布iOS、Android、H5、微信小程序、支付宝小程序、百度小程序、头条小程序等7大平台。" /> -->
+
+
+			<!-- 搜索功能 -->
+			<view class="uni-search-box">
+				<uni-search-bar v-model="keyword" ref="searchBar" radius="100" cancelButton="none" disabled
+					:placeholder="inputPlaceholder" />
+				<view class="cover-search-bar" @click="searchClick"></view>
+			</view>
+
+			<unicloud-db ref='udb' v-slot:default="{data,pagination,hasMore, loading, error, options}"
+				@error="onqueryerror" :collection="colList" :page-size="10">
+				<!-- 基于 uni-list 的页面布局 field="user_id.nickname"-->
+				<uni-list class="uni-list" :border="false" :style="{height:listHight}">
+
+					<!-- 作用于app端nvue页面的下拉加载 -->
+					<!-- #ifdef APP-NVUE -->
+					<refreshBox @refresh="refresh" :loading="loading"></refreshBox>
+					<!-- #endif -->
+
+					<!-- 列表渲染 -->
+					<uni-list-item :to="'/pages/list/detail?id='+item._id+'&title='+item.title"
+						v-for="(item,index) in data" :key="index">
+						<!-- 通过header插槽定义列表左侧图片 -->
+						<template v-slot:header>
+							<image class="avatar" :src="item.avatar" mode="aspectFill"></image>
+						</template>
+						<!-- 通过body插槽定义布局 -->
+						<template v-slot:body>
+							<view class="main">
+								<text class="title">{{item.title}}</text>
+								<view class="info">
+									<text class="author">{{item.user_id[0]?item.user_id[0].nickname:''}}</text>
+									<uni-dateformat class="last_modify_date" :date="item.last_modify_date"
+										format="yyyy-MM-dd" :threshold="[60000, 2592000000]" />
+								</view>
+							</view>
+						</template>
+					</uni-list-item>
+					<!-- 加载状态：上拉加载更多，加载中，没有更多数据了，加载错误 -->
+					<!-- #ifdef APP-PLUS -->
+					<uni-list-item>
+						<template v-slot:body>
+						<!-- #endif -->
+							<uni-load-state @networkResume="refresh" :state="{data,pagination,hasMore, loading, error}"
+								@loadMore="loadMore">
+							</uni-load-state>
+						<!-- #ifdef APP-PLUS -->
+						</template>
+					</uni-list-item>
+					<!-- #endif -->
+				</uni-list>
+			</unicloud-db>
+		</view>
+	</view> <!-- 结束外层容器 -->
+
+
+</template>
+
+<script>
+	let cdbRef;
+	import statusBar from "@/uni_modules/uni-nav-bar/components/uni-nav-bar/uni-status-bar";
+
+	import Gps from '@/uni_modules/json-gps/js_sdk/gps.js';
+	const gps = new Gps(),
+		db = uniCloud.database();
+
+	export default {
+		components: {
+			statusBar
+		},
+		computed: {
+			inputPlaceholder(e) {
+				if (uni.getStorageSync('CURRENT_LANG') == "en") {
+					return 'Please enter the search content'
+				} else {
+					return '请输入搜索内容'
+				}
+			},
+			colList() {
+				return [
+					db.collection('opendb-news-articles').where(this.where).field(
+						'avatar,title,last_modify_date,user_id').getTemp(),
+					db.collection('uni-id-users').field('_id,nickname').getTemp()
+				]
+			}
+		},
+		data() {
+			return {
+				where: '"article_status" == 1',
+				keyword: "",
+				showRefresh: false,
+				listHight: 0,
+				items: [{
+						icon: "scan",
+						text: "扫一扫",
+						color: "#ffffff",
+						flag: "3",
+						url: "/pages/titlegrid/scan/scan"
+					}, // 扫一扫
+					{
+						icon: "cart",
+						text: "贷款",
+						color: "#ffffff",
+						flag: "2",
+						url: "/pages/titlegrid/cart/cart",
+						// url: "/pages/grid/grid",
+					}, // 贷款
+					{
+						icon: "wallet",
+						text: "卡包",
+						color: "#ffffff",
+						flag: "1",
+						url: "/pages/titlegrid/wallet/wallet"
+					}, // 卡包
+					{
+						icon: "chat",
+						text: "资讯",
+						// color: "#777",
+						color: "#ffffff",
+						flag: "2",
+						// url: "/pages/titlegrid/chat/chat",
+						url: "/pages/grid/grid",
+					} // 资讯
+				],
+				info: [{
+						colorClass: 'uni-bg-red',
+						url: 'https://mp-e086c728-982c-4c49-aa1b-7d17dccab637.cdn.bspapp.com/cloudstorage/6341a1b7-67fc-4cbb-b0c7-bbf8955863d7.jpg',
+						content: '内容 A'
+					},
+					{
+						colorClass: 'uni-bg-green',
+						url: 'https://mp-e086c728-982c-4c49-aa1b-7d17dccab637.cdn.bspapp.com/cloudstorage/592ecdbf-a74b-45cc-babb-ba35ed97aa10.png',
+						content: '内容 B'
+					},
+					{
+						colorClass: 'uni-bg-blue',
+						url: 'https://mp-e086c728-982c-4c49-aa1b-7d17dccab637.cdn.bspapp.com/cloudstorage/46a29bc6-4888-4718-8aad-8a8b56b088a5.jpg',
+						content: '内容 C'
+					}
+				],
+
+				current: 0,
+				mode: 'round',
+				dotsStyles: {
+					backgroundColor: 'rgba(0, 0, 0, .3)',
+					border: '1px rgba(0, 0, 0, .3) solid',
+					color: '#fff',
+					selectedBackgroundColor: 'rgba(0, 0, 0, .9)',
+					selectedBorder: '1px rgba(0, 0, 0, .9) solid'
+				},
+				swiperDotIndex: 0
+			}
+		},
+
+
+		watch: {
+			keyword(keyword, oldValue) {
+				let where = '"article_status" == 1 '
+				if (keyword) {
+					this.where = where + `&& /${keyword}/.test(title)`;
+				} else {
+					this.where = where;
+				}
+			}
+		},
+		async onReady() {
+			// #ifdef APP-NVUE
+			/* 可用窗口高度 - 搜索框高 - 状态栏高 */
+			this.listHight = uni.getSystemInfoSync().windowHeight - uni.getSystemInfoSync().statusBarHeight - 50 +
+				'px';
+			// #endif
+			// #ifndef APP-NVUE
+			this.listHight = 'auto'
+			// #endif
+			cdbRef = this.$refs.udb
+		},
+		async onShow() {
+			this.keyword = getApp().globalData.searchText
+			getApp().globalData.searchText = ''
+			//这里仅演示如何，在onShow生命周期获取设备位置，并在设备或者应用没有权限时自动引导。设置完毕自动重新获取。
+			//你可以基于他做自己的业务，比如：根据距离由近到远排序列表数据等
+			// uni.showLoading({
+			// 	title:"获取定位中"
+			// });
+			//默认h5端不获取定位
+			// #ifndef H5
+			let location = await gps.getLocation({
+				geocode: true
+			})
+			// console.log(location);
+			// #endif
+			// if(location){
+			// 	uni.showToast({
+			// 		title: JSON.stringify(location),
+			// 		icon: 'none'
+			// 	});
+			// }
+			// uni.hideLoading()
+		},
+		methods: {
+			searchClick(e) { //点击搜索框
+				uni.hideKeyboard();
+				uni.navigateTo({
+					url: '/pages/list/search/search',
+					animationType: 'fade-in'
+				});
+			},
+			navigateTo(url, flag) {
+				if (flag === "1") {
+					uni.navigateTo({
+						url: url
+					});
+				} else if (flag === "2") {
+					uni.switchTab({
+						url: url
+					});
+				} else if (flag === "3") {
+					uni.scanCode({
+						scanType: ['qrCode'],
+						// 扫码成功后的回调
+						success: (res) => {
+							// res中包含二维码中的信息，其中就有网络链接
+							// 使用navigateTo跳转，并且携带参数，参数为二维码中的链接
+							uni.navigateTo({
+								// 这里注意，此地址只是自己提前写好的，并且路径前面一定要加/
+								url: `/pages/webpage/index?link=${res.result}`
+							})
+						}
+					})
+				}
+			},
+			retry() {
+				this.refresh()
+			},
+			refresh() {
+				cdbRef.loadData({
+					clear: true
+				}, () => {
+					uni.stopPullDownRefresh()
+					// #ifdef APP-NVUE
+					this.showRefresh = false
+					// #endif
+					console.log('end');
+				})
+				console.log('refresh');
+			},
+			loadMore() {
+				cdbRef.loadMore()
+			},
+			onqueryerror(e) {
+				console.error(e);
+			},
+			onpullingdown(e) {
+				console.log(e);
+				this.showRefresh = true
+				if (e.pullingDistance > 100) {
+					this.refresh()
+				}
+			},
+
+			change(e) {
+				this.current = e.detail.current
+			},
+			clickItem(e) {
+				this.swiperDotIndex = e
+
+			},
+
+			// #ifndef APP-NVUE
+			onPullDownRefresh() {
+				this.refresh()
+			},
+			onReachBottom() {
+				this.loadMore()
+			}
+			// #endif
+		},
+	}
+</script>
+
+<style scoped lang="scss">
+	/* #ifndef APP-NVUE */
+	view {
+		display: flex;
+		box-sizing: border-box;
+		flex-direction: column;
+	}
+
+	/* #endif */
+	.pages {
+		// background-color: #FFFFFF;
+		/* 添加渐变背景颜色 */
+		background: linear-gradient(0deg, #FFFFFF 77%, #007BFF);
+	}
+
+	/* 修改容器背景色为蓝色 */
+	.header-section {
+		text-align: center;
+		// background-color: #00aaff;
+		background-color: transparent;
+	}
+
+	/* 修改grid item样式 */
+	.grid-item-box {
+		display: grid;
+		align-items: center;
+		justify-items: center;
+		border: 1px solid #FFFFFF;
+		/* 设置边框为白色 */
+		border-radius: 10px;
+		background-color: transparent;
+		/* 背景颜色透明 */
+		margin: 0 auto;
+	}
+
+	.avatar {
+		width: 200rpx;
+		height: 200rpx;
+		margin-right: 10rpx;
+	}
+
+	.main {
+		justify-content: space-between;
+		flex: 1;
+	}
+
+	.title {
+		font-size: 16px;
+	}
+
+	.info {
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.author,
+	.last_modify_date {
+		font-size: 14px;
+		color: #999999;
+	}
+
+	.uni-search-box {
+		background-color: #FFFFFF;
+		position: sticky;
+		height: 50px;
+		top: 0;
+		left: 0;
+		/* #ifndef APP-PLUS */
+		z-index: 9;
+		/* #endif */
+		/* #ifdef MP-WEIXIN */
+		width: 580rpx;
+		/* #endif */
+	}
+
+	.cover-search-bar {
+		height: 50px;
+		position: relative;
+		top: -50px;
+		margin-bottom: -50px;
+		/* #ifndef APP-NVUE */
+		z-index: 999;
+		/* #endif */
+	}
+
+	// .grid-item-box {
+	// 	display: grid;
+	// 	align-items: center;
+	// 	justify-items: center;
+	// }
+
+	// .text {
+	// 	margin: 0 auto;
+	// 	font-size: 16px;
+	// 	height: 25px;
+	// 	line-height: 25px;
+	// 	color: #817f82;
+	// }
+	.text {
+		margin: 0 auto;
+		font-size: 16px;
+		height: 25px;
+		line-height: 25px;
+		color: #FFFFFF;
+		/* 设置文字为白色 */
+	}
+
+
+	// .icon{
+	// 	margin-top: 10px;
+	// }
+
+	.icon {
+		margin-top: 10px;
+		color: #FFFFFF;
+		/* 设置图标为白色 */
+	}
+
+	.swiper-box {
+		// height: 200px;
+		height: 170px;
+		width: 350px;
+		margin: 0 auto;
+		/* 自动水平居中 */
+	}
+
+	.swiper-item {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		// height: 200px;
+		height: 170px;
+		color: #fff;
+	}
+
+	.swiper-item0 {
+		background-color: #cee1fd;
+	}
+
+	.swiper-item1 {
+		background-color: #b2cef7;
+	}
+
+	.swiper-item2 {
+		background-color: #cee1fd;
+	}
+
+	.image {
+		width: 750rpx;
+		height: 200px;
+		// height: 150px;
+	}
+
+	::v-deep .image img {
+		-webkit-user-drag: none;
+		-khtml-user-drag: none;
+		-moz-user-drag: none;
+		-o-user-drag: none;
+		user-drag: none;
+	}
+
+	@media screen and (min-width: 500px) {
+		.uni-swiper-dot-box {
+			width: 400px;
+			margin: 0 auto;
+			margin-top: 8px;
+			text-align: center;
+		}
+
+		.image {
+			width: 100%;
+			// height: 200px;
+			height: 170px;
+		}
+	}
+
+	.container {
+		position: relative;
+		padding-right: 0px;
+	}
+</style>

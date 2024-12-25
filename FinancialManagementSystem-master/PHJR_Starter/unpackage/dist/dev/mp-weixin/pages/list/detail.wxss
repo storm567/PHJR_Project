@@ -1,0 +1,78 @@
+
+.header-content.data-v-495067d4 {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		font-size: 14px;
+}
+
+	/* 标题 */
+.uni-title.data-v-495067d4 {
+		display: flex;
+		margin-bottom: 5px;
+		font-size: 14px;
+		font-weight: bold;
+		color: #3b4144;
+}
+
+	/* 描述 额外文本 */
+.uni-note.data-v-495067d4 {
+		color: #999;
+		font-size: 12px;
+
+
+		display: flex;
+
+		flex-direction: row;
+		align-items: center;
+}
+.footer.data-v-495067d4 {
+		display: flex;
+		align-items: center;
+}
+.footer-button.data-v-495067d4 {
+		display: flex;
+		align-items: center;
+		font-size: 12px;
+		height: 30px;
+		color: #fff;
+		background-color: #ff5a5f;
+}
+.banner.data-v-495067d4 {
+		position: relative;
+		margin: 0 15px;
+		height: 180px;
+		overflow: hidden;
+}
+.banner-img.data-v-495067d4 {
+		position: absolute;
+		width: 100%;
+}
+.banner-title.data-v-495067d4 {
+		display: flex;
+		align-items: center;
+		position: absolute;
+		padding: 0 15px;
+		width: 100%;
+		bottom: 0;
+		height: 30px;
+		font-size: 14px;
+		color: #fff;
+		background: rgba(0, 0, 0, 0.4);
+		overflow: hidden;
+		box-sizing: border-box;
+}
+.uni-ellipsis.data-v-495067d4 {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+}
+.article-title.data-v-495067d4 {
+		padding: 20px 15px;
+		padding-bottom: 0;
+}
+.article-content.data-v-495067d4 {
+		padding: 15px;
+		font-size: 15px;
+		overflow: hidden;
+}

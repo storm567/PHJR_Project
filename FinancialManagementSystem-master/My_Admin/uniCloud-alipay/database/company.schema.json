@@ -1,0 +1,55 @@
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"com_no": {
+			"bsonType": "string",
+			"description": "企业编号"
+		},
+		"com_name": {
+			"bsonType": "string",
+			"description": "企业名称"
+		},
+		"com_email": {
+			"bsonType": "string",
+			"description": "企业邮箱"
+		},
+		"com_phone": {
+			"bsonType": "string",
+			"description": "企业电话"
+		},
+		"com_pwd": {
+			"bsonType": "string",
+			"description": "企业密码"
+		},
+		"com_time": {
+			"bsonType": "timestamp",
+			"description": "注册时间"
+		},
+		"com_remark": {
+			"bsonType": "string",
+			"description": "备注、激活码"
+		},
+		"com_status": {
+			"bsonType": "string",
+			"description": "0 正常，1 停用，2 未激活，3 未实名, 4 待认证，5 已认证"
+		},
+		"com_del": {
+			"bsonType": "string",
+			"description": "0 存在，2 删除"
+		},
+		"com_card": {
+			"bsonType": "string",
+			"description": "银行卡号"
+		}
+	}
+}

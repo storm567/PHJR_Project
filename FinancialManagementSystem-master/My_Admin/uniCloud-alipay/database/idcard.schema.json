@@ -1,0 +1,59 @@
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"user_id": {
+			"bsonType": "string",
+			"description": "用户id"
+		},
+		"idcard_url": {
+			"bsonType": "string",
+			"description": "身份证图片"
+		},
+		"username": {
+			"bsonType": "string",
+			"description": "姓名"
+		},
+		"idcard": {
+			"bsonType": "string",
+			"description": "身份证号"
+		},
+		"address": {
+			"bsonType": "string",
+			"description": "地址"
+		},
+		"birthday": {
+			"bsonType": "string",
+			"description": "出生日期"
+		},
+		"gender": {
+			"bsonType": "string",
+			"description": "性别"
+		},
+		"nation": {
+			"bsonType": "timestamp",
+			"description": "民族"
+		},
+		"com_remark": {
+			"bsonType": "string",
+			"description": "备注、激活码"
+		},
+		"comId": {
+			"bsonType": "string",
+			"description": "公司ID"
+		},
+		"period": {
+			"bsonType": "timestamp",
+			"description": "身份证有效期"
+		}
+	}
+}
